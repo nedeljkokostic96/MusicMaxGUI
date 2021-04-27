@@ -26,10 +26,10 @@ export class AuthenticationService {
       _tokenExpirationDate: string;
     } = JSON.parse(localStorage.getItem('userData'));
     if (!userData) {
-      console.log("NADA")
+      console.log("console.logged")
       return;
     }
-    console.log("NADA")
+    console.log("console.logged")
     const loadedUser = new UserLogIn(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
     console.log(loadedUser.token)
     if (loadedUser.token) {
