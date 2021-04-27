@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row ">
+      
+        <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" *ngIf="!isLoading" >
+            <div class="form-group form-inline">
+                <label for="firstName" class="mr-2">First Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="firstName"
+                  placeholder="John"
+                />
+                <label for="lastName" class="mx-2">Last Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="lastName"
+                  placeholder="Johnson"
+                />
+              </div>
+
+         
+              <div class="alert alert-danger mt-1" role="alert" *ngIf="errorMsg">
+                You must enter a valid email address!
+             </div>
+       
+          <div class="form-group">
+            <div class="alert alert-danger mt-1" role="alert" *ngIf="errorMsg">
+                {{errorMsg}}
+            </div>
+        </div>
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              aria-describedby="email"
+              placeholder="Enter email"
+            />
+     
+
+            <label for="exampleInputPassword1">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="birthDate">Date of Birth:</label>
+            <input
+              type="date"
+              class="form-control"
+              formControlName="birthDate"
+            /> </div>
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Register</button>
+         </div>
+        </form>
+        <div *ngIf="isLoading">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+      </div>
+    
+  </div>

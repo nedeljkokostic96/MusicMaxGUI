@@ -1,0 +1,50 @@
+<div class="container">
+  <div class=" row w-25 ">
+    <div class="col-12">
+      <form (ngSubmit)="onSubmit()" [formGroup]="logInForm" *ngIf="!isLoading" >
+        <div class="form-group">
+          <h3>Enter your credentials..</h3>
+        </div>
+        <div class="form-group">
+            <div class="alert alert-danger mt-1" role="alert" *ngIf="errorMsg">
+                {{errorMsg}}
+            </div>
+        </div>
+        <div class="form-group">
+          <div class="alert alert-success mt-1" role="alert" *ngIf="successfullyRegistered">
+              You successfully registered! <em> You can now Log-in to your account. </em>
+          </div>
+      </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+          />
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" (click)="routeRegister()" class="btn btn-primary float-right">Register</button>
+    </div>
+      </form>
+      <div *ngIf="isLoading" class=" text-center">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </div>
+  </div>
+</div>
