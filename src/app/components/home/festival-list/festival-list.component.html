@@ -1,0 +1,86 @@
+<div class="text-center"><h2>Browse the list of finished and upcomming music festivals below!</h2></div>
+<mat-divider></mat-divider>
+<app-count-down></app-count-down>
+<mat-divider></mat-divider>
+<div mat-subheader> <mat-icon>calendar_today</mat-icon><b>Upcomming Festivals:</b></div>
+
+<div class="container">
+    <mat-accordion  >
+   
+        <div *ngFor="let upcommingF of upcommingFestivals" class=" my-1 py-1  ">
+            
+           <mat-expansion-panel class="makeMeAccent "  > 
+          <mat-expansion-panel-header >
+            <mat-panel-title> <mat-icon>whatshot</mat-icon>  {{upcommingF.title}}   </mat-panel-title>
+            <mat-panel-description >
+                {{upcommingF.description | slice:0:45}}...
+                
+            </mat-panel-description>
+          </mat-expansion-panel-header >
+
+          <div class="containerr">
+            <div class="text-containerr ">
+                <p > {{upcommingF.description }}</p>
+                <p> <b>Starting:</b> {{ upcommingF.dateStart | date }}  <b>Ending:</b> {{ upcommingF.dateEnd | date }} </p> 
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+    
+        <div mat-subheader>Starting: <mat-icon>arrow_right_alt</mat-icon> {{ upcommingF.dateStart | date }}</div>
+    </div>
+      
+    
+    <mat-divider></mat-divider>
+    
+</mat-accordion>
+</div>
+
+
+
+
+
+
+<mat-divider></mat-divider>
+<div mat-subheader> <mat-icon>calendar_today</mat-icon><b>Finished Festivals:</b></div>
+<div class="container">
+    <mat-accordion  >
+   
+        <div *ngFor="let finishedF of finishedFestivals" class=" my-1 py-1  ">
+            
+           <mat-expansion-panel class="makeMeWarn "  (closed)="commentsVisible = false"> 
+          <mat-expansion-panel-header >
+            <mat-panel-title> <mat-icon>done_outline</mat-icon>  {{finishedF.title}}  </mat-panel-title>
+            <mat-panel-description >
+                {{finishedF.description | slice:0:45}}...
+                
+            </mat-panel-description>
+          </mat-expansion-panel-header >
+
+          <div class="containerr">
+            <div class="text-containerr ">
+                <p > {{finishedF.description }}</p>
+                <p> <b>Started:</b> {{ finishedF.dateStart | date }}  <b>Ended:</b> {{ finishedF.dateEnd | date }} </p> 
+            </div>
+          </div>
+          <button mat-raised-button color="primary" (click)='commentsVisible=!commentsVisible'>See Comments</button>
+          <div *ngIf="commentsVisible">
+          <app-comment-festival *ngFor='let i of [1,2,3]'></app-comment-festival>
+        </div>
+        </mat-expansion-panel>
+    
+        <div mat-subheader>Ended: <mat-icon>arrow_right_alt</mat-icon> {{ finishedF.dateEnd | date }}</div>
+    </div>
+      
+    
+    <mat-divider></mat-divider>
+    
+</mat-accordion>
+</div>
+
+
+
+
+
+
+

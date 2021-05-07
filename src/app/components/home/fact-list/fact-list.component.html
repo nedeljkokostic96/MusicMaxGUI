@@ -1,0 +1,33 @@
+<mat-list class="mb-3">
+ <div class="text-center"> <h1>Welcome! For starters you can read some intresting facts down here <mat-icon>arrow_downward</mat-icon></h1> </div>
+ <mat-divider></mat-divider>
+  <mat-list-item class="float-right container"> <div class="container">  <button class="float-right " mat-stroked-button color="accent" (click)="openDialog()" > <mat-icon class="mr-2">create_new_folder</mat-icon>Add a New Fact</button> </div></mat-list-item>
+  
+</mat-list>
+
+<div class="text-center"><h2>Check out our most active users below!</h2></div>
+<mat-accordion >
+  <div *ngFor="let user of topActiveUsers">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false" >
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+     {{user.firstName}} {{user.lastName}}
+    </mat-panel-title>
+    <mat-panel-description>
+     Number of posted songs 	<mat-icon>arrow_right</mat-icon> 99
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+  </div>
+  </mat-accordion>
+
+
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div [fxFlex]="(100/3) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let fact of facts">
+        <app-fact-item [fact]=fact></app-fact-item>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Leave your comment on this fun fact:</h1>
+<div mat-dialog-content>Enter the details below:
+
+
+<mat-form-field appearance="outline" class="w-100"  color="accent">
+  <mat-label>Comment text</mat-label>
+  <textarea  matInput [(ngModel)]="data.textt"></textarea>
+</mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close color="accent">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="accent">Add</button>
+</div>

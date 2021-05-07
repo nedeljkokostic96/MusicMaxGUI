@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav container" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list >
+      <a role="button" mat-list-item (click)="logOut()">	<mat-icon color="accent">exit_to_app</mat-icon>Log out</a>
+      <a role="button" mat-list-item ><mat-icon color="accent">person</mat-icon>Profile</a>
+      <hr>
+      <a mat-list-item (click)="toHome()"><mat-icon >home</mat-icon>Home</a>
+      <a mat-list-item routerLink='songs'><mat-icon>queue_music</mat-icon>Songs</a>
+      <a mat-list-item routerLink='festivals'  >	<mat-icon>people</mat-icon>Festivals</a>
+      <a mat-list-item href="#">	<mat-icon> forum</mat-icon>Forum</a>
+      <hr>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="accent"> 
+      <button 
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span >Music Max  </span>
+      <img  src="/assets/music-notes.png" class="clearfix img-fluid h-100 m-4" >
+      <span class="example-spacer"></span>
+      <span class="p-2 m-4">
+      <form class="example-form">
+        <mat-form-field class="example-full-width ">
+          <mat-label color="primary">Search By Name</mat-label>
+          <input color="primary" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </span>
+
+    </mat-toolbar>
+    <router-outlet ></router-outlet> 
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

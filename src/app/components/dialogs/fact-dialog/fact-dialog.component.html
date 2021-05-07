@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Hello! Add the details of your new fact!</h1>
+<div mat-dialog-content>Enter the details below:
+  <mat-divider></mat-divider>
+<mat-form-field class="p-2">
+  <mat-label>Fact Title</mat-label>
+  <input matInput [(ngModel)]="data.title">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Fact Picture URL</mat-label>
+  <input matInput [(ngModel)]="data.imgURL">
+</mat-form-field>
+
+<mat-divider></mat-divider>
+<mat-form-field  class="w-100">
+  <mat-label>Fact Text</mat-label>
+  <textarea  matInput [(ngModel)]="data.content"></textarea>
+</mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close color="accent">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="accent">Add</button>
+</div>

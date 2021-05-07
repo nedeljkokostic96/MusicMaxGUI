@@ -1,0 +1,67 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <div class="alert alert-danger mt-1" role="alert" *ngIf="errorMsg">
+    {{errorMsg}}
+ </div> 
+    <mat-card class="box p-4" *ngIf="!isLoading">
+      <mat-card-header >
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+
+      <form class="example-form" (ngSubmit)='onSubmit()' [formGroup]='signUpForm' *ngIf="!isLoading">
+        
+        <mat-card-content >
+          <mat-form-field class="example-half-width p-1" [@wobble]="currentStateFname">
+            <input formControlName="firstName" matInput placeholder="First Name" >
+            <mat-error *ngIf="signUpForm.get('firstName').hasError('pattern')">
+             Your first name can't containt <strong>any numbers!</strong>
+            </mat-error> 
+          </mat-form-field>
+
+          <mat-form-field class="example-half-width p-1" [@wobble]="currentStateLname">
+            <input  formControlName="lastName" matInput placeholder="Last Name">
+            <mat-error *ngIf="signUpForm.get('lastName').hasError('pattern')">
+              Your last name can't containt <strong>any numbers!</strong>
+             </mat-error> 
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Choose your date of birth</mat-label>
+            <input formControlName="birthDate" matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="signUpForm.get('birthDate').hasError('matDatepickerMax') || signUpForm.get('birthDate').hasError('required')">You must be at least 18 years old!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field [@wobble]="currentState" class="example-full-width">
+            <input  formControlName="email" type="email" matInput placeholder="Ex. pat@example.com" [errorStateMatcher]="matcher">
+            <mat-hint>Enter your existing email address!</mat-hint>
+            <mat-error *ngIf="signUpForm.get('email').hasError('email') &&!signUpForm.get('email').hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width" [@wobble]="currentStatePassword">
+            <input   formControlName="password" matInput placeholder="Password" type="password">
+            <mat-error *ngIf="signUpForm.get('password').hasError('minlength')">
+              Password must be at least <strong>6 characters long</strong>
+            </mat-error> 
+          </mat-form-field>
+  
+
+  
+        </mat-card-content>
+  
+        <button mat-stroked-button color="accent" type='submit'class="btn-block" [disabled]="!signUpForm.valid">Register</button>
+  
+      </form>
+        
+    </mat-card>
+    <div class="text-center"><app-loading-spinner *ngIf="isLoading" class="box w-25"></app-loading-spinner></div>
+
+  </div>
+  

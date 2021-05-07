@@ -1,0 +1,32 @@
+<div class="card text-center">
+    
+  <div class="card-header font-weight-bold "><h1>{{selectedFact.title}}  
+    <span class="float-right"><button mat-fab color="accent" routerLink='../'>
+    	<mat-icon>arrow_back</mat-icon>
+  </button></span></h1>  
+
+</div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <div class="card-img-top justify-content-center">
+          <img src="{{selectedFact.imgURL}}" class="card-img-top img-fluid " style="max-height: 480px;"/>
+          <div class="m-2 float-right"><button mat-raised-button color="accent" (click)="openDialog()">Comment</button></div>
+        </div>
+      </div>
+      <div class="col">
+        <h5 class="card-title">Read the details here:</h5>
+        <p class="card-text">
+            {{selectedFact.content}}
+        </p>
+        
+        <div class="card-footer text-muted">Comments</div>
+        
+        <app-comment-festival *ngFor='let i of [1,2,3]'></app-comment-festival>
+
+      </div>
+    </div>
+    
+  </div>
+</div>

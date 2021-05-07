@@ -1,0 +1,73 @@
+body{
+    margin-top:20px;
+    background:#FAFAFA;
+}
+.order-card {
+    color: #fff;
+}
+
+.bg-c-1 {
+    background: linear-gradient(45deg,#B3FFAB,#12FFF7);
+}
+
+.bg-c-2 {
+    background: linear-gradient(45deg,#ddd6f3,#faaca8);
+}
+
+.bg-c-3 {
+    background: linear-gradient(45deg,#F0C27B,
+    #4b1248);
+}
+
+.bg-c-4 {
+    background: linear-gradient(45deg,#FBD3E9,#BB377D);
+}
+
+.bg-c-5 {
+    background: linear-gradient(45deg,#C9FFBF,#ffafbd
+    );
+}
+.bg-c-6 {
+    background: linear-gradient(45deg,#B993D6,#8CA6DB
+    );
+}
+.bg-c-7 {
+    background: linear-gradient(45deg,#00d2ff,#3a7bd5
+    );
+}
+.bg-c-8 {
+    background: linear-gradient(45deg,#f2709c,#ff9472
+    );
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 13px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    max-width: 15rem;
+    max-height: 8rem;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scaleY(1.05);
+    transform-origin: bottom;
+  }
+
+.card .card-block {
+    padding: 10px;
+}
+
+.order-card i {
+    font-size: 23px;
+}
+
+.f-left {
+    float: left;
+}
+
