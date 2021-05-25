@@ -18,6 +18,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FactListComponent } from './components/home/fact-list/fact-list.component';
 import { FactDialogComponent } from './components/dialogs/fact-dialog/fact-dialog.component';
 import { CommentDialogComponent } from './components/dialogs/comment-dialog/comment-dialog.component';
+import { SongDialogComponent } from './components/dialogs/song-dialog/song-dialog.component';
 
 
 
@@ -30,6 +31,7 @@ import { CommentDialogComponent } from './components/dialogs/comment-dialog/comm
     NotFoundComponent,
     FactDialogComponent,
     CommentDialogComponent,
+    SongDialogComponent,
 
     
   ],

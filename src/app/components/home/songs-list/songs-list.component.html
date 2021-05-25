@@ -1,4 +1,11 @@
 <div class="container">
+    <div class="row m-4"> 
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3 "> <div></div> <button class="ml-5" mat-stroked-button color="accent" (click)="openDialog()" > <mat-icon class="mr-2">create_new_folder</mat-icon>Add a New Song</button> </div>
+      
+    </div>
     <div class="row m-4">
        <div class="col-xs-12 col-md-6 col-lg-3" *ngFor='let cat of categories; let i = index'>
             <app-category-item [category]='cat' ></app-category-item>

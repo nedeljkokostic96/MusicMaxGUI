@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Category } from 'src/app/model/Category';
 import { Song } from 'src/app/model/Song';
+import { SongDialogComponent } from '../../dialogs/song-dialog/song-dialog.component';
 
 @Component({
   selector: 'app-songs-list',
@@ -17,9 +19,22 @@ export class SongsListComponent implements OnInit {
                 {name:'Song for the unknowns',duration:3.6 , author:'John Doe'},
                 {name:'Song for the unknowns',duration:3.6 , author:'John Doe'},
                 {name:'Song for the unknowns',duration:3.6 , author:'John Doe'}]
-  constructor() { }
+  constructor(private dialog :MatDialog) { }
+
 
   ngOnInit(): void {
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(SongDialogComponent, {
+      width:'45vw',
+      height:'35vh'
+    });
+
+    dialogRef.afterClosed().subscribe(result=> {
+      if(result){
+      console.log('Song made'+ result) }
+    });
   }
 
 }

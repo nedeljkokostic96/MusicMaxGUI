@@ -1,0 +1,98 @@
+<h1 mat-dialog-title>Enter Song Details Below</h1>
+<div mat-dialog-content>
+    <div class="container">
+    <form  [formGroup]="frmSong">
+        
+    <div class="row ">
+        <div class="col-4">
+            <mat-form-field>
+                <mat-label>Title:</mat-label>
+                <input matInput formControlName="title" >
+              </mat-form-field>
+
+        </div>
+        <div class="col-4 ">
+            <mat-form-field>
+                <mat-label>Text:</mat-label>
+                <textarea  matInput formControlName="text" rows="1"> </textarea>
+              </mat-form-field>
+
+        </div>
+        <div class="col-4 ">
+
+            <mat-form-field >
+                <mat-label>Date of Publishing:</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="publishingDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        
+        </div>
+
+
+    </div>
+
+      <div class="row mt-4 ">
+          <div class="col-4 ">
+            <mat-form-field class="example-full-width">
+                <mat-label>Author:</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       formControlName="author"
+                       matInput
+                       [formControl]="myControlAuthor"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option  *ngFor="let option of filteredOptionsAuthor | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+                <mat-label>Composer:</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       formControlName="composer"
+                       matInput
+                       [formControl]="myControlComposer"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option   *ngFor="let option of filteredOptionsComposer | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+        
+
+          </div>
+          <div class="col-4 ">
+            <mat-form-field class="example-full-width">
+                <mat-label>Performer:</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       formControlName="performer"
+                       matInput
+                       [formControl]="myControlPerformer"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option  *ngFor="let option of filteredOptionsPerformer | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+          </div>
+
+
+    </div>
+
+    </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button >Cancel</button>
+  <button mat-button [mat-dialog-close]="frmSong.value" cdkFocusInitial>Add</button>
+</div>
