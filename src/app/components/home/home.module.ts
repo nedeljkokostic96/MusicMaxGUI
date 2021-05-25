@@ -17,6 +17,8 @@ import { CountDownComponent } from 'src/app/util/count-down/count-down.component
 import { SongsListComponent } from './songs-list/songs-list.component';
 import { SongItemComponent } from './songs-list/song-item/song-item.component';
 import { CategoryItemComponent } from './songs-list/category-item/category-item.component';
+import { ForumListComponent } from './forum-list/forum-list.component';
+import { ForumItemComponent } from './forum-item/forum-item.component';
 
 
 
@@ -32,7 +34,9 @@ import { CategoryItemComponent } from './songs-list/category-item/category-item.
     CountDownComponent,
     SongsListComponent,
     SongItemComponent,
-    CategoryItemComponent
+    CategoryItemComponent,
+    ForumListComponent,
+    ForumItemComponent
   ],
   imports: [
     CommonModule,

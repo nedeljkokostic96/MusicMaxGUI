@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <mat-list>
+                <mat-list-item *ngFor='let item of forums'  >
+                  
+                   <button mat-raised-button   class="w-75" (click)="selectForum(item)" color="warn">{{item.title}} </button>
+                </mat-list-item>
+              </mat-list>
+
+              <button mat-raised-button color="accent"  class="w-75"  (click)="openDialogAddForum()">Open a new Forum Theme</button>
+        </div>
+
+        <div class="col-8">
+            <h3>Below u can see the comments left on selected theme of the forum</h3>
+
+            <app-forum-item [forum]='selectedForum'></app-forum-item>
+        </div>
+    </div>
+
+</div>
