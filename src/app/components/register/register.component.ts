@@ -82,23 +82,27 @@ export class RegisterComponent implements OnInit {
   onSubmit(){
     const email = this.signUpForm.get('email').value;
     const password = this.signUpForm.get('password').value;
+    const fname = this.signUpForm.get('firstName').value;
+    const lname  = this.signUpForm.get('lastName').value;
+    const birthDate = this.signUpForm.get('birthDate').value;
     
-    let authObs: Observable<AuthResponseData>;
+    //let authObs: Observable<AuthResponseData>;
     this.isLoading= true;
 
-    authObs = this.authService.signup(email,password);
+   let authObs = this.authService.signup(email,password,fname, lname,birthDate);
 
     authObs.subscribe(resData=>{
       console.log(resData);
-      const newUser:UserRegisterClient= this.signUpForm.value;
-      this.storageService.storeUser(newUser).subscribe(result=>{});
+
+
       this.isLoading=false;
       console.log("ovde sam")
       this.router.navigate(["/login"],{queryParams:{succes:'true'}});
     }, errorMsg=>{
-      this.errorMsg = errorMsg;
+      this.errorMsg = errorMsg.error.error.message;
       console.log(errorMsg);
       this.isLoading=false;
+      this.router.navigate(["/login"],{queryParams:{succes:'true'}});
     })
   }
 }

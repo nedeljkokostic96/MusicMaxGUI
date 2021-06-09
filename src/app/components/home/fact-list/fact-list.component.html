@@ -5,29 +5,46 @@
   
 </mat-list>
 
+
+
+
 <div class="text-center"><h2>Check out our most active users below!</h2></div>
 <mat-accordion >
-  <div *ngFor="let user of topActiveUsers">
-  <mat-expansion-panel (opened)="panelOpenState = true"
+  <div *ngFor="let user of topActiveUsers |async">
+  <mat-expansion-panel (opened)="panelOpenState = true" hideToggle
   (closed)="panelOpenState = false" >
   <mat-expansion-panel-header>
     <mat-panel-title>
      {{user.firstName}} {{user.lastName}}
     </mat-panel-title>
     <mat-panel-description>
-     Number of posted songs 	<mat-icon>arrow_right</mat-icon> 99
+     Number of posted songs 	<mat-icon>arrow_right</mat-icon> {{user.num}}
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <p>I'm visible because I am open</p>
+  <p>{{user.email}}</p>
   </mat-expansion-panel>
   </div>
   </mat-accordion>
+  <mat-divider></mat-divider>
 
+  
+
+
+<div class="text-center"><h2>Check Out the most popular song yet!</h2></div>
+  <ng-container *ngIf="topPopularSong">
+  <div class="row my-4">
+    <div class="col-12">
+    <mat-accordion>
+        <app-song-item [song]='topPopularSong' ></app-song-item>
+    </mat-accordion>
+</div>
+</div>
+</ng-container>
 
 <div class="content">
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div [fxFlex]="(100/3) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let fact of facts">
-        <app-fact-item [fact]=fact></app-fact-item>
+      <div [fxFlex]="(100/3) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let fact of facts |async;let index = index">
+        <app-fact-item [fact]=fact [index]="index"></app-fact-item>
       </div>
     </div>
   </div>

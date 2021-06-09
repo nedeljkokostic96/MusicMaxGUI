@@ -1,6 +1,6 @@
 export interface Fact{
-    id:number;
+    idFunFact:number;
     title:string;
-    content:string;
+    text:string;
     imgURL:string;
 }

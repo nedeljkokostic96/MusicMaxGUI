@@ -34,7 +34,7 @@
           <mat-label color="primary">Search By Name</mat-label>
           <input color="primary" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectSong(option.name)">
               {{option.name}}
             </mat-option>
           </mat-autocomplete>

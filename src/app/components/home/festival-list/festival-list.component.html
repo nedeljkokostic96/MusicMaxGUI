@@ -7,7 +7,7 @@
 <div class="container">
     <mat-accordion  >
    
-        <div *ngFor="let upcommingF of upcommingFestivals" class=" my-1 py-1  ">
+        <div *ngFor="let upcommingF of fetchedFestivalsUpcomming" class=" my-1 py-1  ">
             
            <mat-expansion-panel class="makeMeAccent "  > 
           <mat-expansion-panel-header >
@@ -21,13 +21,13 @@
           <div class="containerr">
             <div class="text-containerr ">
                 <p > {{upcommingF.description }}</p>
-                <p> <b>Starting:</b> {{ upcommingF.dateStart | date }}  <b>Ending:</b> {{ upcommingF.dateEnd | date }} </p> 
+                <p> <b>Starting:</b> {{ upcommingF.dateBegin | date }}  <b>Ending:</b> {{ upcommingF.dateEnd | date }} </p> 
             </div>
           </div>
 
         </mat-expansion-panel>
     
-        <div mat-subheader>Starting: <mat-icon>arrow_right_alt</mat-icon> {{ upcommingF.dateStart | date }}</div>
+        <div mat-subheader>Starting: <mat-icon>arrow_right_alt</mat-icon> {{  upcommingF.dateBegin | date  }}</div>
     </div>
       
     
@@ -46,7 +46,7 @@
 <div class="container">
     <mat-accordion  >
    
-        <div *ngFor="let finishedF of finishedFestivals" class=" my-1 py-1  ">
+        <div *ngFor="let finishedF of fetchedFestivalsDone" class=" my-1 py-1  ">
             
            <mat-expansion-panel class="makeMeWarn "  (closed)="commentsVisible = false"> 
           <mat-expansion-panel-header >
@@ -60,13 +60,23 @@
           <div class="containerr">
             <div class="text-containerr ">
                 <p > {{finishedF.description }}</p>
-                <p> <b>Started:</b> {{ finishedF.dateStart | date }}  <b>Ended:</b> {{ finishedF.dateEnd | date }} </p> 
+                <p> <b>Started:</b> {{ finishedF.dateBegin | date }}  <b>Ended:</b> {{ finishedF.dateEnd | date }} </p> 
             </div>
           </div>
-          <button mat-raised-button color="primary" (click)='commentsVisible=!commentsVisible'>See Comments</button>
+          <button mat-raised-button color="primary" (click)='getComments(finishedF)'>See Comments</button>
           <div *ngIf="commentsVisible">
-          <app-comment-festival *ngFor='let i of [1,2,3]'></app-comment-festival>
+          <app-comment-festival *ngFor='let i of visibleComments;let index = index' [comment]='i' [index]="index"></app-comment-festival>
         </div>
+
+
+        <mat-divider class="mt-2"></mat-divider>
+
+    <div class="row">
+
+      <button mat-raised-button color="accent"  class="w-25 mt-4"  (click)="openDialogAddForum()">Leave a Comment</button>
+
+    </div>
+
         </mat-expansion-panel>
     
         <div mat-subheader>Ended: <mat-icon>arrow_right_alt</mat-icon> {{ finishedF.dateEnd | date }}</div>

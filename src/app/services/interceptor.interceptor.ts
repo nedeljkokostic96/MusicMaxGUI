@@ -19,10 +19,13 @@ export class InterceptorInterceptor implements HttpInterceptor {
     return this.authService.loggedUser.pipe(take(1),
     exhaustMap(user => {
       if(!user)
-        return next.handle(request);
+        return next.handle(request)
+
       const  modifiedReq = request.clone({
-        params: new HttpParams().set('auth', user.token)
+        headers: request.headers.set('Authorization',"Bearer "+ user.token).set('access-control-allow-origin',"*")
       })
+      
+
       return next.handle(modifiedReq);
     })
   )

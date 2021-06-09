@@ -1,6 +1,7 @@
+<ng-container *ngIf="selectedFact">
 <div class="card text-center">
     
-  <div class="card-header font-weight-bold "><h1>{{selectedFact.title}}  
+  <div class="card-header font-weight-bold "><h1>  {{selectedFact.text}}
     <span class="float-right"><button mat-fab color="accent" routerLink='../'>
     	<mat-icon>arrow_back</mat-icon>
   </button></span></h1>  
@@ -12,21 +13,54 @@
       <div class="col">
         <div class="card-img-top justify-content-center">
           <img src="{{selectedFact.imgURL}}" class="card-img-top img-fluid " style="max-height: 480px;"/>
+          
           <div class="m-2 float-right"><button mat-raised-button color="accent" (click)="openDialog()">Comment</button></div>
+          <div class="m-2 float-right"> <button mat-raised-button color="warn" (click)="downloadFile()">Download</button></div>
+         
+
+          <button type="button" mat-raised-button (click)="fileInput.click()" class="m-2">Choose File</button>
+
+
+          <input  hidden  type="file"
+                 id="file" #fileInput
+                 (change)="handleFileInput($event.target.files)">
+
+                
+
+
+  
         </div>
       </div>
       <div class="col">
         <h5 class="card-title">Read the details here:</h5>
-        <p class="card-text">
-            {{selectedFact.content}}
-        </p>
         
-        <div class="card-footer text-muted">Comments</div>
+         <h1 class="card-text">   {{selectedFact.text}}</h1>
+       
         
-        <app-comment-festival *ngFor='let i of [1,2,3]'></app-comment-festival>
+        <div class="card-footer text-muted">Posted By</div>
+        
+       <!-- <app-comment-festival *ngFor='let i of [1,2,3]'></app-comment-festival> -->
+
+       
+       <div class="card card-white post m-2">
+        <div class="post-heading">
+            <div class="float-left image">
+                <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+            </div>
+            <div class="float-left meta">
+                <div class="title h5">
+                    <a href="#"><b>{{postedBy.firstName}} {{postedBy.lastName}}</b></a>
+                    made a post. <p>{{postedBy.email}}</p>
+                </div>
+                <h6 class="text-muted time">{{postedBy.birthDate | date:'shortDate'}}</h6>
+            </div>
+        </div> 
+
+    </div>
 
       </div>
     </div>
     
   </div>
 </div>
+</ng-container>

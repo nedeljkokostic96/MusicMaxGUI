@@ -1,12 +1,17 @@
-<div class="container">
+
+<ng-container *ngIf="forum">
+
     <div class="row text-center">
-     
-        <h2>{{forum.title}}</h2>
+     <div class="col-12">
+      <h1>Topic Name: </h1>  <h2>{{forum.topic}}</h2>
         <mat-divider></mat-divider>
     </div>
-    <div class="row">
-
-        <app-comment-festival *ngFor='let i of [1,2,3]'></app-comment-festival>
-        <button mat-raised-button color="accent"  class="w-50 mt-4"  (click)="openDialogAddForum()">Leave A Comment</button>
     </div>
-</div>
+    <div class="row " *ngFor='let i of forum.comments;let index =index'>
+        <div class="col-12">
+        <app-comment-festival [comment]="i" [index]="index"></app-comment-festival>
+    </div>
+    </div>
+    <button mat-raised-button color="accent"  class="w-50 mt-4"  (click)="openDialogAddForum()">Leave A Comment</button>
+
+</ng-container>

@@ -17,29 +17,40 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient,private router:Router) { }
 
-  signup(email:string, password:string){
+  signup(email:string, password:string, fname:string, lname:string, birthDate:Date){
     return  this.http.post<AuthResponseData>
-    ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDNTYmlMH9TuDKfDUfYXvrzBdjjxh030Bs',
+    ('http://localhost:8080/MusicMax/api/auth/signup',
     {
-      email: email,
-      password: password,
-      returnSecureToken: true 
+      'email': email,
+      'password': password,
+      'firstName': fname,
+      'lastName': lname,
+      'birthDate' :birthDate,
+      'role' : 'user'
+     
     }
     
-    ).pipe(catchError(this.handleError))
+    ).pipe(tap(resData=>{
+      console.log(resData)
+    }) )
   }
 
+
+  emailTemp:string;
   login(email: string, password: string) {
-    return this.http.post<AuthResponseData>
-    ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDNTYmlMH9TuDKfDUfYXvrzBdjjxh030Bs',
+    this.emailTemp = email;
+
+    return this.http.post
+    ('http://localhost:8080/MusicMax/api/auth/signin',
       {
-        email: email,
-        password: password,
-        returnSecureToken: true
+        'email': email,
+        'password': password,
+      
       }
-    ).pipe(catchError(this.handleError),
-      tap(resData => {
-        this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+    )
+    .pipe(catchError(this.handleError),
+      tap((resData:any) => {
+        this.handleAuthentication(resData.accessToken, this.emailTemp);
 
       }))
   }
@@ -70,7 +81,7 @@ export class AuthenticationService {
     if (!userData) {
       return;
     }
-    const loadedUser = new UserLogIn(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+    const loadedUser = new UserLogIn(userData.email, userData._token, new Date(userData._tokenExpirationDate));
     if (loadedUser.token) {
       this.loggedUser.next(loadedUser);
       const expDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
@@ -79,11 +90,11 @@ export class AuthenticationService {
     }
   }
 
-  private handleAuthentication(email:string, userId:string, token:string, expiresIn:number){
-    const expDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new UserLogIn(email, userId, token, expDate);
+  private handleAuthentication(accessToken:string, email:string){
+    const expDate = new Date(new Date().getTime() + 3600 * 1000);
+    const user = new UserLogIn( email, accessToken, expDate);
     this.loggedUser.next(user);
-    this.autoLogout(expiresIn * 1000);
+    this.autoLogout(3600 * 1000);
     localStorage.setItem('loggedUserData', JSON.stringify(user));
   }
 

@@ -1,16 +1,16 @@
 
     <mat-card class="mat-elevation-z4">
       <mat-card-header>
-        <mat-card-title>{{fact.title}}</mat-card-title>
+        <mat-card-title>{{fact.title }}...</mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{fact.imgURL}}" style="height: 17rem;">
+      <img mat-card-image src="{{pic}}" style="height: 17rem;">
       <mat-card-content>
         <p class="text-break">
-          {{fact.content}}
+          {{fact.text}}
         </p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button (click)='handleCommentRoute()'>COMMENT</button>
-        <button mat-button routerLink="../{{fact.id}}">SEE DETAILS</button>
+        <button mat-button routerLink="../{{fact.idFunFact}}">SEE DETAILS</button>
       </mat-card-actions>
     </mat-card>

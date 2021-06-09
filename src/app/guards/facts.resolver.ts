@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {
   Router, Resolve,
   RouterStateSnapshot,
@@ -16,12 +16,8 @@ export class FactsResolver implements Resolve<Fact[]> {
 
   constructor(private storageService:StorageService){}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Fact[]{
-    let factsArray:Fact[] = this.storageService.fetchFacts() ;
-    console.log(factsArray);
-  //---------will be like this when backend is added  
-  //  this.storageService.fetchFacts().pipe(take(1), map(facts=>{
-  //    factsArray =  facts;
-  //   }));
-    return factsArray;
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<Fact[]>{
+
+    return  this.storageService.fetchFacts().pipe(take(1));
 }}

@@ -1,7 +1,7 @@
-<div class="card order-card" [ngClass]="true ? 'bg-c-' +num : ''" (click)='true'>
+<div class="card order-card" [ngClass]="true ? 'bg-c-' +num : ''" (click)='emitId()'>
     <div class="card-block">
-        <h1 class="m-b-20">{{category.name}}</h1>
-        <h2 class="text-right"><mat-icon>library_music</mat-icon><span> {{category.numSongs}}</span></h2>
+        <h1 class="m-b-20">{{category.genre}}</h1>
+        <h2 class="text-right"><mat-icon>library_music</mat-icon><span> {{category.numberOfSongs}}</span></h2>
 
     </div>
 </div>

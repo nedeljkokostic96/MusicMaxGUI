@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { Festival } from 'src/app/model/Festival';
 
 @Component({
   selector: 'app-count-down',
@@ -7,10 +8,12 @@ import { interval, Subscription } from 'rxjs';
   styleUrls: ['./count-down.component.css']
 })
 export class CountDownComponent implements OnInit, OnDestroy {
+  
+
   private subscription: Subscription;
   
   public dateNow = new Date();
-  public dDay = new Date('Jun 01 2021 00:00:00');
+  public dDay = new Date('Sep 10 2021 00:00:00');
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
   minutesInAnHour = 60;

@@ -1,4 +1,5 @@
 export interface Category{
-    name:string;
-    numSongs:number;
+    idGenre:number;
+    genre:string;
+    numberOfSongs:number;
 }

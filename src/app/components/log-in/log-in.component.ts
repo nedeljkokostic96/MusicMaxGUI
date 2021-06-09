@@ -33,7 +33,7 @@ export class LogInComponent implements OnInit {
     });
     this.logInForm = new FormGroup({
       'email': new FormControl(null, {validators:[Validators.required, Validators.email],  updateOn: 'blur'}),
-      'password': new FormControl(null,[Validators.required, Validators.minLength(6)] )
+      'password': new FormControl(null,[Validators.required, Validators.minLength(5)] )
     });
     
     this.logInForm.statusChanges.subscribe(value=>{
@@ -48,10 +48,10 @@ export class LogInComponent implements OnInit {
     const email = this.logInForm.get('email').value;
     const password = this.logInForm.get('password').value;
 
-    let authObs: Observable<AuthResponseData>;
+   // let authObs: Observable<AuthResponseData>;
     this.isLoading= true;
 
-    authObs = this.authService.login(email,password);
+   let authObs = this.authService.login(email,password);
 
     authObs.subscribe(resData=>{
       console.log(resData);
